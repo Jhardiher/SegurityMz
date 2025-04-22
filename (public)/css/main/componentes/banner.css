@@ -1,0 +1,73 @@
+/* Aseguramos que el carrusel ocupe todo el ancho y se ajuste de manera adecuada */
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Cambiar apariencia de los controles del carrusel */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.6);  /* Fondo oscuro */
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background-size: 60% 60%;
+  }
+  
+  /* Mover el botón anterior completamente a la izquierda */
+  .carousel-control-prev {
+    left: 0;  /* Alinea el botón completamente a la izquierda */
+    right: auto;  /* Elimina el valor predeterminado de la derecha */
+  }
+  
+  /* Quitar el hover azul en los controles */
+  .carousel-control-prev-icon:hover,
+  .carousel-control-next-icon:hover {
+    background-color: rgba(0, 0, 0, 0.6);  /* El fondo se mantiene oscuro */
+  }
+  
+  /* Indicadores: personalización para el círculo activo */
+  .carousel-indicators button.active {
+    background-color: #004aad;
+  }
+  
+  /* Indicadores no activos */
+  .carousel-indicators button {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  
+  /* Botón con estilo dentro del banner (si lo necesitas en algún slide) */
+  .cotizar-btn {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #004aad;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+  }
+  
+  .cotizar-btn:hover {
+    background-color: #5a125a;
+  }
+  
+  /* Clase para cualquier contenido extra dentro del carrusel (opcional) */
+  .carousel-caption-custom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
