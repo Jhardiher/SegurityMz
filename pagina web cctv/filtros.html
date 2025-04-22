@@ -1,0 +1,30 @@
+<section class="barra-filtros">
+  <div class="container">
+    <h3>Filtrar productos</h3>
+    <form id="filtro-form">
+      <div class="form-group">
+        <label for="tipo-camara">Tipo de cámara:</label>
+        <select id="tipo-camara" name="tipo-camara" class="form-control">
+          <option value="">Todas</option>
+          <option value="Domo">Tipo Domo</option>
+          <option value="Bala">Tipo Bala</option>
+          <option value="Wifi">Tipo Wifi</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="precio-min">Precio mínimo:</label>
+        <input type="number" id="precio-min" name="precio-min" placeholder="Ej: 10.000" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="precio-max">Precio máximo:</label>
+        <input type="number" id="precio-max" name="precio-max" placeholder="Ej: 100.000" class="form-control">
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary">Aplicar filtros</button>
+      </div>
+    </form>
+  </div>
+</section>
