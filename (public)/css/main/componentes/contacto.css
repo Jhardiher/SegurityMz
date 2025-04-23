@@ -1,0 +1,84 @@
+/* Área de contacto general */
+.contacto-form {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    max-width: 800px;
+    margin: 3rem auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dee2e6;
+}
+
+/* Título del formulario */
+.contacto-form h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #004aad;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* Campos del formulario */
+.contacto-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* Para que el select o input ocupen todo su espacio */
+.contacto-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Etiquetas */
+.contacto-form label {
+    font-weight: 600;
+    color: #333333;
+}
+
+/* Inputs y selects */
+.contacto-form input[type="text"],
+.contacto-form input[type="tel"],
+.contacto-form select {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.contacto-form input[type="text"]:focus,
+.contacto-form input[type="tel"]:focus,
+.contacto-form select:focus {
+    border-color: #004aad;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Botón de enviar */
+.contacto-form button {
+    grid-column: 1 / -1;
+    padding: 0.9rem;
+    background-color: #004aad;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contacto-form button:hover {
+    background-color: #00307a;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .contacto-form form {
+        grid-template-columns: 1fr;
+    }
+}

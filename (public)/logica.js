@@ -1,3 +1,11 @@
+
+ // Función para cargar el archivo navvar.html
+ fetch('nadvar.html')
+ .then(response => response.text())  // Convierte la respuesta en texto
+ .then(data => {
+     document.getElementById('navbar-container').innerHTML = data;  // Inserta la barra de navegación
+ })
+ .catch(error => console.error('Error al cargar la barra de navegación:', error));
 // Cargar banner
 fetch('banner.html')
   .then(res => res.text())
