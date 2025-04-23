@@ -22,12 +22,12 @@ document.getElementById('formulario-contacto').addEventListener('submit', functi
   
     
     const numeroWhatsApp = "573232310187"; //numero del vendedor no usa el + del indicativo
-    
+
   
     // Crea el enlace de WhatsApp 
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
   
     // Redirecciona al usuario
-    window.open(url, '_blank') ;
+    window.location.href = url;
   });
   
