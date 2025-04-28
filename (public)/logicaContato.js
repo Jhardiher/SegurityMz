@@ -34,16 +34,3 @@ document.getElementById('formulario-contacto').addEventListener('submit', functi
   // Redirecciona a WhatsApp
   window.top.location.href = url,url2;
 });
- //seguridad
-const nombre = document.getElementById('nombre').value.trim();
-const telefono = document.getElementById('telefono').value.trim();
-
-if (!nombre.match(/^[a-zA-Z\s]+$/)) {
-  alert("Nombre inválido.");
-  return;
-}
-
-if (!telefono.match(/^\d{10}$/)) {
-  alert("Número de teléfono inválido.");
-  return;
-}
