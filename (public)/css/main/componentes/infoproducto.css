@@ -1,0 +1,98 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+   
+  }
+  
+  .contenedor-producto {
+    margin: 120px auto 30px auto; /* margen top para dejar espacio a la barra */
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffffdd;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+    max-width: 1000px;
+    width: 95%;
+   
+  }
+  
+  .imagen-producto {
+    flex: 1 1 50%;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .imagen-producto img {
+    max-width: 100%;
+    transition: transform 0.5s ease;
+  }
+  
+  .imagen-producto:hover img {
+    transform: scale(1.05);
+  }
+  
+  .info-producto {
+    flex: 1 1 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  }
+  
+  .info-producto h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .info-producto p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  .info-producto span {
+    font-size: 28px;
+    color: #ff4c60;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .info-producto button {
+    background: #a7a7a7;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .info-producto button:hover {
+    background: #020024;
+background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 140, 171, 1) 0%, rgba(0, 212, 255, 1) 100%);
+  }
+  
+  .info-producto button:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .contenedor-producto {
+      flex-direction: column;
+      margin: 100px 15px 30px 15px;
+    }
+  }
+  
