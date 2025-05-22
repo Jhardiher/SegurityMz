@@ -9,9 +9,7 @@ if (id_producto) {
   fetch(`http://localhost:3000/producto/${id_producto}`)
     .then(response => response.json())
     .then(data => {
-      document.getElementById("productoImagen").innerHTML = `
-        <img src="${data.imagen_url}" class="img-fluid rounded">
-      `;
+      document.getElementById("productoImagen").innerHTML = `<img src="${data.imagen_url}" class="img-fluid rounded">`;
       document.getElementById("productoNombre").textContent = data.nombre;
       document.getElementById("productoDescripcion").textContent = data.descripcion;
       document.getElementById("productoPrecio").textContent = `$${data.precio}`;
