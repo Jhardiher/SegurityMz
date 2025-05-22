@@ -1,68 +1,61 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
-const { Script } = require('vm');
 
 const app = express();
-const port = 3000;
-
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public")); // para servir imágenes si es necesario
 
 // Conexión a MySQL
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'admin',   
-  database: 'seguritymz'
+const connection  = mysql.createConnection({
+  host: '185.236.182.93',
+  user: 'jhardiher_giraldo',
+  password: '1006663004',   
+  database: 'jhardiher_giraldo',
+  port: 3306
 });
 
-db.connect(error => {
-  if (error) throw error;
-  console.log('Conectado a la base de datos MySQL');
+// Verificar conexión
+connection.connect(error => {
+  if (error) {
+    console.error('Error al conectar a MySQL:', error);
+    return;
+  }
+  console.log('Conectado a MySQL con éxito.');
 });
 
-// Ruta para obtener todos los productos
-app.get('/api/productos', (req, res) => {
-  db.query('SELECT * FROM productos', (err, results) => {
-    if (err) throw err;
+// Endpoint para todos los productos
+app.get('/', (req, res) => {
+  connection.query('SELECT * FROM productos', (error, results) => {
+    if (error) {
+      console.error('Error en la consulta:', error);
+      res.status(500).send('Error en la base de datos');
+      return;
+    }
     res.json(results);
   });
 });
 
-// Ruta para obtener un producto por ID
-app.get('/api/productos/:id', (req, res) => {
+// Endpoint para un producto específico por ID
+app.get("/producto/:id", (req, res) => {
   const id = req.params.id;
-  db.query('SELECT * FROM productos WHERE id = ?', [id], (err, results) => {
-    if (err) throw err;
-    if (results.length > 0) {
-      res.json(results[0]);
-    } else {
-      res.status(404).send('Producto no encontrado');
-    }
-  });
-});
-
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
-});
-
-
-app.get('/api/productos/:id', (req, res) => {
-    const productoId = req.params.id;
-    db.query('SELECT * FROM productos WHERE id = ?', [productoId], (err, results) => {
+  connection.query(
+    "SELECT nombre, descripcion, precio, imagen_url FROM productos WHERE id_producto = ?",
+    [id],
+    (err, results) => {
       if (err) {
-        console.error('Error en la consulta:', err);
-        res.status(500).json({ error: 'Error en la consulta' });
-        return;
+        res.status(500).json({ error: "Error al consultar producto" });
+      } else if (results.length === 0) {
+        res.status(404).json({ error: "Producto no encontrado" });
+      } else {
+        res.json(results[0]);
       }
-      if (results.length === 0) {
-        res.status(404).json({ error: 'Producto no encontrado' });
-        return;
-      }
-      res.json(results[0]);
-    });
-  });
-  
-  
-  
+    }
+  );
+});
+
+// Iniciar servidor
+app.listen(3000, () => {
+  console.log('Servidor corriendo en http://localhost:3000');
+});
