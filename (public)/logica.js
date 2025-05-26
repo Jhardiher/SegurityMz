@@ -1,17 +1,42 @@
 
- // Función para cargar el archivo navvar.html
- fetch('nadvar.html')
- .then(response => response.text())  // Convierte la respuesta en texto
- .then(data => {
-     document.getElementById('navbar-container').innerHTML = data;  // Inserta la barra de navegación
- })
- .catch(error => console.error('Error al cargar la barra de navegación:', error));
+// Función para cargar el archivo navvar.html
+
+fetch('nadvar.html')
+  .then(response => response.text())  // Convierte la respuesta en texto
+  .then(data => {
+    document.getElementById('navbar-container').innerHTML = data;  // Inserta la barra de navegación
+
+    const scriptSesion = document.createElement('script');
+    scriptSesion.src = 'js/sesion.js';
+    scriptSesion.onload = () => {
+
+      actualizarEstadoSesion();
+    };
+    document.body.appendChild(scriptSesion);
+  })
+
+
+  .catch(error => console.error('Error al cargar la barra de navegación:', error));
+
+
+
+
+
+// funicono para cargar el fooder.html
+fetch('footer.html')
+  .then(response => response.text())  // Convierte la respuesta en texto 
+  .then(data => {
+    document.getElementById('footer-container').innerHTML = data;  // Inserta el footer
+  })
+  .catch(error => console.error('Error al cargar el footer:', error));
+
 // Cargar banner
 fetch('banner.html')
   .then(res => res.text())
   .then(html => {
     document.getElementById('banner-container').innerHTML = html;
   })
+
   .catch(err => console.error('Error al cargar el banner:', err));
 // Cargar tarjetas de productos
 fetch('cards.html')
@@ -70,3 +95,4 @@ function inicializarFiltro() {
     });
   });
 }
+

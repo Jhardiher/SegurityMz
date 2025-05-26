@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
-
+const router= express.Router();
 
 const app = express();
 app.use(cors());
@@ -55,6 +55,48 @@ app.get("/producto/:id", (req, res) => {
     }
   );
 });
+
+// Endpoint para registrar usuario
+app.post('/registro', (req, res) => {
+  const { nombre, correo, contraseña } = req.body;
+
+  if (!nombre || !correo || !contraseña) {
+    return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+  }
+
+  const sql = 'INSERT INTO usuarios (nombre, correo, contraseña) VALUES (?, ?, ?)';
+  connection.query(sql, [nombre, correo, contraseña], (error, results) => {
+    if (error) {
+      console.error('Error al registrar usuario:', error);
+      return res.status(500).json({ error: 'Error al registrar usuario' });
+    }
+    res.status(201).json({ message: 'Usuario registrado con éxito' });
+  });
+});
+
+// Endpoint para login de usuario
+app.post('/login', (req, res) => {
+  const { correo, contraseña } = req.body;
+
+  if (!correo || !contraseña) {
+    return res.status(400).json({ error: 'Correo y contraseña son requeridos' });
+  }
+
+  const sql = 'SELECT * FROM usuarios WHERE correo = ? AND contraseña = ?';
+  connection.query(sql, [correo, contraseña], (error, results) => {
+    if (error) {
+      console.error('Error en login:', error);
+      return res.status(500).json({ error: 'Error en login' });
+    }
+
+    if (results.length > 0) {
+      res.status(200).json({ message: 'Login exitoso', usuario: results[0] });
+    } else {
+      res.status(401).json({ error: 'Credenciales inválidas' });
+    }
+  });
+});
+
 
 // Iniciar servidor
 app.listen(3000, () => {
