@@ -1,25 +1,18 @@
-
-
-function getQueryParam(param) {
+function obtenerParametroUrl(nombre) {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
+  return urlParams.get(nombre);
 }
 
-  
+const id_producto = obtenerParametroUrl("id_producto");
 
-function cargarProducto() {
-  const productoId = getQueryParam('id');
-  
-  fetch(`http://localhost:3000/api/productos/${productoId}`)
+if (id_producto) {
+  fetch(`http://localhost:3000/producto/${id_producto}`)
     .then(response => response.json())
     .then(data => {
-      document.getElementById('producto-nombre').innerText = data.nombre;
-      document.getElementById('producto-imagen').src = data.imagen;
-      document.getElementById('producto-descripcion').innerText = data.descripcion;
+      document.getElementById("productoImagen").innerHTML = `<img src="${data.imagen_url}" class="img-fluid rounded">`;
+      document.getElementById("productoNombre").textContent = data.nombre;
+      document.getElementById("productoDescripcion").textContent = data.descripcion;
+      document.getElementById("productoPrecio").textContent = `$${data.precio}`;
     })
-    .catch(error => {
-      console.error('Error al obtener producto:', error);
-    });
+    .catch(error => console.error("Error al cargar producto:", error));
 }
-
-window.onload = cargarProducto;
